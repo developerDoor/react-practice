@@ -1,0 +1,48 @@
+<component name="ProjectCodeStyleConfiguration">
+  <code_scheme name="Project" version="173">
+    <option name="AUTODETECT_INDENTS" value="false" />
+    <HTMLCodeStyleSettings>
+      <option name="HTML_KEEP_BLANK_LINES" value="0" />
+    </HTMLCodeStyleSettings>
+    <JSCodeStyleSettings version="0">
+      <option name="SPACE_BEFORE_GENERATOR_MULT" value="true" />
+      <option name="REFORMAT_C_STYLE_COMMENTS" value="true" />
+      <option name="VAR_DECLARATION_WRAP" value="0" />
+      <option name="OBJECT_LITERAL_WRAP" value="2" />
+      <option name="IMPORTS_WRAP" value="0" />
+      <option name="SPACES_WITHIN_INTERPOLATION_EXPRESSIONS" value="true" />
+    </JSCodeStyleSettings>
+    <codeStyleSettings language="HTML">
+      <indentOptions>
+        <option name="USE_TAB_CHARACTER" value="true" />
+        <option name="KEEP_INDENTS_ON_EMPTY_LINES" value="true" />
+      </indentOptions>
+    </codeStyleSettings>
+    <codeStyleSettings language="JavaScript">
+      <option name="RIGHT_MARGIN" value="250" />
+      <option name="KEEP_LINE_BREAKS" value="false" />
+      <option name="KEEP_BLANK_LINES_IN_CODE" value="10" />
+      <option name="INDENT_CASE_FROM_SWITCH" value="false" />
+      <option name="ALIGN_MULTILINE_PARAMETERS" value="false" />
+      <option name="ALIGN_MULTILINE_FOR" value="false" />
+      <option name="SPACE_BEFORE_METHOD_PARENTHESES" value="true" />
+      <option name="KEEP_SIMPLE_BLOCKS_IN_ONE_LINE" value="true" />
+      <option name="KEEP_SIMPLE_METHODS_IN_ONE_LINE" value="true" />
+      <indentOptions>
+        <option name="USE_TAB_CHARACTER" value="true" />
+      </indentOptions>
+      <arrangement>
+        <groups>
+          <group>
+            <type>TREAT_LAMBDA_INITIALIZED_FIELDS_AS_METHODS</type>
+            <order>KEEP</order>
+          </group>
+          <group>
+            <type>GROUP_PROPERTY_FIELD_WITH_GETTER_SETTER</type>
+            <order>KEEP</order>
+          </group>
+        </groups>
+      </arrangement>
+    </codeStyleSettings>
+  </code_scheme>
+</component>
