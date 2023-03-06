@@ -6,9 +6,10 @@ import {useState} from "react";
 import data from './data.js';
 import { Routes, Route, Link, useNavigate, Outlet } from "react-router-dom";
 import Detail from "./routes/Detail";
+import axios from "axios";
 
 function App () {
-	let [shoes] = useState(data)
+	let [shoes, setShoes] = useState(data)
 	let navigate = useNavigate(); // 페이지 이동 도와주는 함수
 	return (
 		<div className="App">
@@ -28,13 +29,30 @@ function App () {
 						<div className="main-bg" style={ {backgroundImage: 'url(' + bg + ')'} }></div>
 						<div className="container">
 							<div className="row">
-								{
-									shoes.map((e, i) => {
+								{ shoes.map((e, i) => {
 										return <Card shoes={ shoes[i] } i={ i }></Card>
-									})
-								}
+								}) }
 							</div>
 						</div>
+						<button onClick={()=>{
+							axios.get('https://codingapple1.github.io/shop/data2.json')
+								.then((data)=>{
+									let copy = [...shoes, ...data.data];
+									setShoes(copy)
+									console.log(copy)
+								})
+								.catch(()=> {
+									console.log('실패함ㅅㄱ')
+								}
+								)
+							Promise.all([ axios.get('/url1'), axios.get('/url2') ])
+								.then(()=>{
+									// 위 두 요청이 둘다 성공했을 때 작동
+							})
+								.catch(()=> {
+
+							})
+						}}>더보기</button>
 					</>
 				}/>
 				<Route path="/detail/:id" element={ <Detail shoes={shoes} /> } />
