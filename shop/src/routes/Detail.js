@@ -1,6 +1,9 @@
 import {useParams} from "react-router-dom";
 import styled from 'styled-components';
-import {useEffect, useState} from "react";
+import {useContext, useEffect, useState} from "react";
+import { Nav } from 'react-bootstrap'
+
+import { Context1 } from './../App'
 
 // let YellowBtn = styled.button`
 // 	background: ${ props => props.bg };
@@ -34,11 +37,21 @@ import {useEffect, useState} from "react";
 
 // 요즘 컴포넌트 만드는 법
 function Detail (props) {
+	let {재고, shoes} = useContext(Context1) // 보관함 해체
 	let {id} = useParams();
 	// data의 요소중에서 id와 같은 id를 가진것을 찾는다.
 	let data = props.shoes.find((e) => e.id == id)
 	let [count, setCount] = useState(0)
 	let [alert, setAlert] = useState(true)
+	let [탭, 탭변경] = useState(0)
+	let [fade2, setFade2] = useState('')
+	useEffect(()=>{
+		setFade2('end')
+		return ()=>{
+			setFade2('')
+		}
+	},[])
+
 	// Hook
 
 	// Detail 컴포넌트가 마운트, 업데이트될 때 실행된다.
@@ -68,7 +81,7 @@ function Detail (props) {
 
 	// 빡똥식 정리
 	return (
-		<div className="container">
+		<div className={'container start ' + fade2}>
 			{
 				alert == true
 				?	<div className="alert alert-warning">2초이내 구매시 할인</div>
@@ -93,9 +106,27 @@ function Detail (props) {
 					<button className="btn btn-danger">주문하기</button>
 				</div>
 			</div>
+
+			<Nav variant="tabs"  defaultActiveKey="link0">
+				<Nav.Item>
+					<Nav.Link onClick={()=>{
+						탭변경(0)
+					}} eventKey="link0">버튼0</Nav.Link>
+				</Nav.Item>
+				<Nav.Item>
+					<Nav.Link onClick={()=>{
+						탭변경(1)
+					}} eventKey="link1">버튼1</Nav.Link>
+				</Nav.Item>
+				<Nav.Item>
+					<Nav.Link onClick={()=> {
+						탭변경(2)
+					}} eventKey="link2">버튼2</Nav.Link>
+				</Nav.Item>
+			</Nav>
+			<TabContent 탭={탭}/>
 		</div>
 	)
-
 
 	// useEffect(() => {}) 1. 재렌더링 될 때마다 코드 실행하고 싶으면
 	// useEffect(() => {}, []) 2. mount시 1회 코드 실행하고 싶으면
@@ -108,4 +139,21 @@ function Detail (props) {
 	// 5. 특정 state 변경시에만 실행하려면 [state명]
 }
 
+function TabContent({탭}) {
+	let [fade, setFade] = useState('')
+
+	useEffect(() => {
+		// react 18버전 이상에서 생긴 automatic batching 기능 때문에
+		// state 변경하는 함수들이 근처에 있으면 하나로 다 합쳐서 한꺼번에 state를 변경하고 한번 재렌더링한다
+		let a = setTimeout(()=>{ setFade('end') }, 10)
+		return () => {
+			clearTimeout(a)
+			setFade('')
+		}
+	},[탭])
+
+	return (<div className={'start ' + fade}>
+		{ [<div>내용0</div>, <div>내용1</div>, <div>내용2</div>][탭] }
+	</div>)
+}
 export default Detail;
